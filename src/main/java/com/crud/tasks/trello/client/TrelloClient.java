@@ -11,6 +11,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 @Component
 public class TrelloClient {
@@ -43,9 +45,8 @@ public class TrelloClient {
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
 
 
-        if (boardsResponse != null) {
-            return Arrays.asList(boardsResponse);
-        }
-        return new ArrayList<>();
+        //jakaś rzeź  ze stack >>> https://stackoverflow.com/questions/47301994/can-resttemplate-getforobjecturl-object-class-return-null
+        return Optional.ofNullable(boardsResponse).map(Arrays::asList).orElseGet(ArrayList::new);
+
     }
 }
