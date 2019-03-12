@@ -3,7 +3,6 @@ package com.crud.tasks.controller;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.trello.client.TrelloClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,23 +14,22 @@ import java.util.stream.Collectors;
 @RequestMapping("/v1/trello")
 public class TrelloController {
 
+    private final TrelloClient trelloClient;
+
     @Autowired
-    private TrelloClient trelloClient;
+    public TrelloController(TrelloClient trelloClient) {
+        this.trelloClient = trelloClient;
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-    public void getTrelloBoards() {
+    public List<TrelloBoardDto> getTrelloBoards() {
 
-        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-
-        //trelloBoards.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
-
-        List<TrelloBoardDto> filtredTrelloBoards = trelloBoards.stream()
-                .filter(i -> i.getId() != null)
-                .filter(n -> n.getName().contains("Kodilla"))
+        return trelloClient.getTrelloBoards().stream()
+                .filter(board -> board.getId() != null)
+                .filter(board -> board.getName().contains("Kodilla"))
                 .collect(Collectors.toList());
 
-        filtredTrelloBoards.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
-
+        //filtredTrelloBoards.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
 
     }
 }
