@@ -1,7 +1,6 @@
 package com.crud.tasks.trello.config;
 
 import lombok.Getter;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +16,4 @@ public class TrelloConfig {
 
     @Value("${trello.app.token}")
     private String trelloToken;
-
-    //@Value("${trello.app.username}")
-    //private String trelloUsername;
 }
