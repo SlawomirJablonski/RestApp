@@ -22,7 +22,7 @@ public class SimpleEmailService {
         LOGGER.info("Starting email preparation...");
 
         try{
-            SimpleMailMessage mailMassage = createmailMassage(mail);
+            SimpleMailMessage mailMassage = createMailMassage(mail);
             javaMailSender.send(mailMassage);
 
             LOGGER.info("Email has been sent");
@@ -33,11 +33,14 @@ public class SimpleEmailService {
 
     }
 
-    private SimpleMailMessage createmailMassage(final Mail mail){
+    private SimpleMailMessage createMailMassage(final Mail mail){
         SimpleMailMessage mailMassage = new SimpleMailMessage();
         mailMassage.setTo(mail.getMailTo());
         mailMassage.setSubject(mail.getSubject());
         mailMassage.setText(mail.getMessage());
+        if(mail.getToCc()!=null &&  mail.getToCc()!=""){
+            mailMassage.setCc(mail.getToCc());
+        }
         return mailMassage;
     }
 }
