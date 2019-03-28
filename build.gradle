@@ -28,6 +28,7 @@ dependencies {
 	compile 'mysql:mysql-connector-java'
 	//compile 'org.postgresql:postgresql'
 	compile 'org.springframework.boot:spring-boot-starter-mail:1.5.7.RELEASE'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8'
 	
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 

@@ -8,6 +8,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringUtils;
 
 @Service
 public class SimpleEmailService {
@@ -38,9 +39,14 @@ public class SimpleEmailService {
         mailMassage.setTo(mail.getMailTo());
         mailMassage.setSubject(mail.getSubject());
         mailMassage.setText(mail.getMessage());
-        if(mail.getToCc()!=null &&  mail.getToCc()!=""){
+        if(StringUtils.isNotEmpty(mail.getToCc())){
             mailMassage.setCc(mail.getToCc());
         }
         return mailMassage;
     }
 }
+
+// lib. StringUtils. for relplace condition:
+// if(mail.getToCc()!=null &&  mail.getToCc()!=""){
+//            mailMassage.setCc(mail.getToCc());
+//        }
