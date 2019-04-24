@@ -32,5 +32,7 @@ dependencies {
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8'
 	
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	compile group: 'javax.persistence', name: 'persistence-api', version: '1.0.2'
+	compile 'com.google.code.gson:gson:2.8.2'
 
 }
