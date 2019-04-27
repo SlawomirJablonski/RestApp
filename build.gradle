@@ -30,9 +30,10 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-mail:1.5.7.RELEASE'
 	compile group: 'org.atteo', name: 'evo-inflector', version: '1.2.2'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8'
+	compile 'org.springframework.boot:spring-boot-starter-actuator'
 	
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
-	compile group: 'javax.persistence', name: 'persistence-api', version: '1.0.2'
+	//compile group: 'javax.persistence', name: 'persistence-api', version: '1.0.2'
 	compile 'com.google.code.gson:gson:2.8.2'
 
 }
