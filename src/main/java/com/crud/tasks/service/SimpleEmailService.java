@@ -23,7 +23,7 @@ public class SimpleEmailService {
 
         try{
             SimpleMailMessage mailMassage = createMailMassage(mail);
-            javaMailSender.send(mailMassage);
+            //javaMailSender.send(mailMassage);
 
             LOGGER.info("Email has been sent");
 
