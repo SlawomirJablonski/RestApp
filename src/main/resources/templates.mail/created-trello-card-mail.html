@@ -86,7 +86,8 @@
             <div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;">
 
                 <!-- START CENTERED WHITE CONTAINER -->
-                <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">PREVIEW_MESSAGE</span>
+                <span th:if="${is_scheduled_message}" th:text="${scheduled_message}" class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;"></span>
+                <span th:unless="${is_scheduled_message}" th:text="${preview_message}" class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;"></span>
                 <table class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;">
 
                     <!-- START MAIN CONTENT AREA -->
@@ -113,8 +114,14 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                                            Application functionality:
+                                        <p th:if="${is_scheduled_message}" style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+                                            Tasks in DB:
+                                        </p>
+                                        <ul th:if="${is_scheduled_message}" th:each="tasks : ${task_list}">
+                                            <li th:text="${tasks.getTitle()}"></li>
+                                        </ul>
+                                        <p th:unless="${is_scheduled_message}" style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+                                        Application functionality:
                                         </p>
                                         <ul th:each="function : ${application_functionality}">
                                             <li th:text="${function}"></li>
@@ -134,7 +141,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                         <tr>
                             <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
-                                <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;"th:text="${company_details}"></span>
+                                <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;"th:text="${admin_config.getCompanyDetails()}"></span>
                             </td>
                         </tr>
                     </table>

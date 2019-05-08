@@ -29,6 +29,7 @@ public class SimpleEmailService {
         try{
             //SimpleMailMessage mailMassage = createMailMassage(mail);
             javaMailSender.send(createMimeMessage(mail));
+            javaMailSender.send(createScheduledMailMessage(mail));
 
             LOGGER.info("Email has been sent");
 
@@ -44,6 +45,16 @@ public class SimpleEmailService {
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
             messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+        };
+    }
+
+    private MimeMessagePreparator createScheduledMailMessage(final Mail mail) {
+        return mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setFrom("sjmailuser@gmail.com");
+            messageHelper.setTo(mail.getMailTo());
+            messageHelper.setSubject(mail.getSubject());
+            messageHelper.setText(mailCreatorService.buildScheduledEmail(mail.getMessage()), true);
         };
     }
 
