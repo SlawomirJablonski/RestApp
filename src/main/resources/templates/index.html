@@ -7,6 +7,22 @@
 <body>
 <h1>First impression of my page</h1>
 
+<span th:text="${variable}"></span>
+
+<br>
+<span th:text="${myVariable + ' * ' + myVariable + ' = '}"></span>
+<span th:text="${myVariable}*${myVariable}"></span>
+
+<br>
+<span th:text="${myVariable + ' * ' + myVariable + ' + ' + myVariable + ' = '}"></span>
+<span th:text="${myVariable}*${myVariable}+${myVariable}"></span>
+
+<br>
+<span th:text="${myVariable + ' - ' + myVariable + ' * ' + myVariable + ' = '}"></span>
+<span th:text="${myVariable}-${myVariable}*${myVariable}"></span>
+</br>
+</br>
+</br>
 
 </body>
 </html>

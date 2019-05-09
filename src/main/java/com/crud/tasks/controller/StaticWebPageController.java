@@ -11,13 +11,14 @@ import java.util.Map;
 //@ResponseBody
 public class StaticWebPageController {
 
-    @GetMapping("/")
+    /*@GetMapping("/")
     public String index(){
         return "index";
-    }
+    }*/
 
-    /*private static final int MY_VARIABLE = 2;
+    private static final int MY_VARIABLE = 2;
 
+    //@GetMapping("/")
     @RequestMapping("/")
     public String index(Map<String,Object> model){
         model.put("variable", "My Thymeleaf variable");
@@ -25,5 +26,5 @@ public class StaticWebPageController {
         model.put("two", 2);
         model.put("myVariable", MY_VARIABLE);
         return "index";
-    }*/
+    }
 }
