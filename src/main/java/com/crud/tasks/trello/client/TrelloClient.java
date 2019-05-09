@@ -30,7 +30,7 @@ public class TrelloClient {
                 trelloConfig.getTrelloApiEndpoint()))
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
-                .queryParam("fields", "name,id")
+                .queryParam("fields", "id,name")
                 .queryParam("lists", "all")
                 .build().encode().toUri();
 
